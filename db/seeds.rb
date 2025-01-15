@@ -1,43 +1,25 @@
 # db/seeds.rb
 
+require "open-uri"
+require "json"
+
 puts "Cleaning up database..."
 Movie.destroy_all
+puts "Database cleaned"
 
-Movie.create(title: "Wonder Woman 1984", overview: "Wonder Woman comes into conflict with the Soviet Union during the Cold War in the 1980s", poster_url: "https://image.tmdb.org/t/p/original/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg", rating: 6.9)
-Movie.create(title: "The Shawshank Redemption", overview: "Framed in the 1940s for double murder, upstanding banker Andy Dufresne begins a new life at the Shawshank prison", poster_url: "https://image.tmdb.org/t/p/original/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg", rating: 8.7)
-Movie.create(title: "Titanic", overview: "101-year-old Rose DeWitt Bukater tells the story of her life aboard the Titanic.", poster_url: "https://image.tmdb.org/t/p/original/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg", rating: 7.9)
-Movie.create(title: "Ocean's Eight", overview: "Debbie Ocean, a criminal mastermind, gathers a crew of female thieves to pull off the heist of the century.", poster_url: "https://image.tmdb.org/t/p/original/MvYpKlpFukTivnlBhizGbkAe3v.jpg", rating: 7.0)
-Movie.create(title: "The Dark Knight", overview: "When the menace known as the Joker emerges from his mysterious past, he wreaks havoc and chaos on the people of Gotham.", poster_url: "https://image.tmdb.org/t/p/original/qJ2tW6WMUDux911r6m7ha5Xl9mf.jpg", rating: 9.0)
-Movie.create(title: "Inception", overview: "A thief who enters the dreams of others to steal secrets from their subconscious is given the inverse task of planting an idea into the mind of a CEO.", poster_url: "https://image.tmdb.org/t/p/original/rw0ExuJUhOqgsApJcfA9guHjq3Y.jpg", rating: 8.8)
-Movie.create(title: "The Matrix", overview: "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.", poster_url: "https://image.tmdb.org/t/p/original/jg58bVXKJrX1t4fQlv4sdJl2xu7.jpg", rating: 8.7)
-Movie.create(title: "Pulp Fiction", overview: "The lives of two mob hitmen, a boxer, a gangster's wife, and a pair of diner bandits intertwine in four tales of violence and redemption.", poster_url: "https://image.tmdb.org/t/p/original/c6b8t4zF1Q9IjWmsSzqklZT43Vx.jpg", rating: 8.9)
-Movie.create(title: "Forrest Gump", overview: "The presidencies of Kennedy and Johnson, the Vietnam War, the Watergate scandal and other historical events unfold from the perspective of an Alabama man with an extraordinary low IQ.", poster_url: "https://image.tmdb.org/t/p/original/jul2uKzvnwHr6gn5Up0GGZ7ptsp.jpg", rating: 8.8)
-Movie.create(title: "Interstellar", overview: "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.", poster_url: "https://image.tmdb.org/t/p/original/5T9kxA7NOmCo5j7ym6vauKnI84w.jpg", rating: 8.6)
-Movie.create(title: "Gladiator", overview: "A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.", poster_url: "https://image.tmdb.org/t/p/original/6V3YcdOxMdeE8VvLlSeQK4dGptV.jpg", rating: 8.5)
-Movie.create(title: "The Lion King", overview: "Lion prince Simba and his father are targeted by his bitter uncle, who wants to ascend the throne himself.", poster_url: "https://image.tmdb.org/t/p/original/6F8s6OQZVY9DPJvG8rF2WJWtzVj.jpg", rating: 8.5)
-Movie.create(title: "Back to the Future", overview: "Marty McFly, a teenager, is accidentally sent 30 years into the past in a time-traveling DeLorean invented by his close friend, the eccentric scientist Doc Brown.", poster_url: "https://image.tmdb.org/t/p/original/sOIlg9LFc0zA0Viqnk5kFrO8qDB.jpg", rating: 8.5)
-Movie.create(title: "Avengers: Endgame", overview: "After the devastating events of Avengers: Infinity War, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe.", poster_url: "https://image.tmdb.org/t/p/original/sXvtsA93BQG6HIm8PZJOF1OR1s7.jpg", rating: 8.4)
-Movie.create(title: "Jurassic Park", overview: "During a preview tour, a theme park suffers a major power breakdown that allows its cloned dinosaur exhibits to run amok.", poster_url: "https://image.tmdb.org/t/p/original/9KXrApvvYlNSVV1KkgyT1XgYz9n.jpg", rating: 8.1)
-Movie.create(title: "The Godfather", overview: "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.", poster_url: "https://image.tmdb.org/t/p/original/pvACrxlyXRxkuxzd5hvN8cwQFh5.jpg", rating: 9.2)
-Movie.create(title: "The Avengers", overview: "Earth's mightiest heroes must come together and learn to fight as a team if they are going to stop the mischievous Loki and his alien army from enslaving humanity.", poster_url: "https://image.tmdb.org/t/p/original/bMsIYtMlRZl1v2KjoMJ6bsekgFD.jpg", rating: 8.0)
-Movie.create(title: "Jaws", overview: "A giant great white shark arrives on the shores of a New England beach resort town, prompting the local sheriff to hunt it down.", poster_url: "https://image.tmdb.org/t/p/original/kxL5CpTjH8V1u0LM6wRbKmp8hCu.jpg", rating: 8.0)
-Movie.create(title: "The Silence of the Lambs", overview: "A young F.B.I. cadet must confide in an incarcerated and manipulative killer to receive his help on catching another serial killer who skins his victims.", poster_url: "https://image.tmdb.org/t/p/original/q0EOtvqz1NIsqaFg6vXtMek7bJ6.jpg", rating: 8.6)
-Movie.create(title: "Fight Club", overview: "An insomniac office worker and a soap salesman form an underground fight club that evolves into much more.", poster_url: "https://image.tmdb.org/t/p/original/lv4IfuNB1W5WysXhH4pbkO6uFuF.jpg", rating: 8.7)
-Movie.create(title: "Star Wars: A New Hope", overview: "Luke Skywalker embarks on a journey to rescue Princess Leia and stop the Empire's sinister plot with the help of a rogue smuggler and his co-pilot.", poster_url: "https://image.tmdb.org/t/p/original/cD5v6jZEmAD1aRuHJ4v8bzd1mn4.jpg", rating: 8.6)
-Movie.create(title: "Schindler's List", overview: "In Nazi-occupied Poland, industrialist Oskar Schindler gradually becomes concerned for his Jewish workers after witnessing their persecution by the Nazis.", poster_url: "https://image.tmdb.org/t/p/original/nxWfi7zfvRQDtk8PT5H3GfsyMkd.jpg", rating: 9.0)
-Movie.create(title: "Casablanca", overview: "A cynical nightclub owner struggles to decide whether or not he should help his former lover and her fugitive husband escape the Nazis in Vichy-controlled Casablanca.", poster_url: "https://image.tmdb.org/t/p/original/aPrnp6z1ytSZX3yyfsj0QLzjlqP.jpg", rating: 8.5)
-Movie.create(title: "The Terminator", overview: "A cyborg is sent from the future to protect a woman whose unborn son will lead humanity in a war against the machines.", poster_url: "https://image.tmdb.org/t/p/original/xzssHtFPUhZkrDpnqIKSsz8XEKx.jpg", rating: 8.0)
-Movie.create(title: "Goodfellas", overview: "The story of Henry Hill and his life in the mob, covering his relationship with his wife, his rise through the ranks, and his eventual downfall.", poster_url: "https://image.tmdb.org/t/p/original/97F7f8zU9b8KvfDczJ0HCB0GeIS.jpg", rating: 8.7)
-Movie.create(title: "The Prestige", overview: "A mysterious story of two magicians whose intense rivalry leads them on a dangerous path involving obsession, deceit, and sacrifice.", poster_url: "https://image.tmdb.org/t/p/original/4O6yqHHTnMZc3tQ07iJXq7zXqJ8.jpg", rating: 8.5)
-Movie.create(title: "Whiplash", overview: "A young drummer's life becomes dominated by a ruthless music conductor who will stop at nothing to push his students to the limit of their abilities.", poster_url: "https://image.tmdb.org/t/p/original/e6yYIqMkDxeuZdJcKv2bfcUmtx9.jpg", rating: 8.5)
-Movie.create(title: "The Shining", overview: "A family heads to an isolated hotel for the winter where a sinister presence influences the father into violence, while his psychic son sees horrific visions.", poster_url: "https://image.tmdb.org/t/p/original/dOXtzJbfD7t8SjiLgxBaI5XxHbb.jpg", rating: 8.4)
-Movie.create(title: "A Clockwork Orange", overview: "In a near-future dystopian society, a gang of ultra-violent teens cause havoc until one is chosen for a government treatment program.", poster_url: "https://image.tmdb.org/t/p/original/py3bbxx1p9MeFq1XPkpwb6s6AWM.jpg", rating: 8.3)
-Movie.create(title: "Blade Runner", overview: "A blade runner must pursue and terminate four replicants who stole a ship in space, and have returned to Earth to find their creator.", poster_url: "https://image.tmdb.org/t/p/original/9FxBDGgbVqTzvHpn43X2noXwpt7.jpg", rating: 8.1)
-Movie.create(title: "The Big Lebowski", overview: "Jeff 'The Dude' Lebowski, a Los Angeles slacker, is mistaken for a wealthy man with the same name, and gets caught in a kidnapping scheme.", poster_url: "https://image.tmdb.org/t/p/original/zi9q7j8ML8z5wptgr6wWyRYbBcx.jpg", rating: 8.1)
-Movie.create(title: "The Godfather Part II", overview: "The early life and career of Vito Corleone in 1920s Sicily and 1930s New York are portrayed, while his son Michael expands and tightens his grip on the family crime syndicate.", poster_url: "https://image.tmdb.org/t/p/original/5p1w90FmiYcN2tRirZAZfFhHY1C.jpg", rating: 9.0)
-Movie.create(title: "The Departed", overview: "An undercover cop and a mole in the police attempt to identify each other while infiltrating an Irish gang in Boston.", poster_url: "https://image.tmdb.org/t/p/original/nrD1YnmhUVQfcnHZ4JQzZj5GZ7u.jpg", rating: 8.5)
-Movie.create(title: "Memento", overview: "A man with short-term memory loss attempts to track down his wife's murderer.", poster_url: "https://image.tmdb.org/t/p/original/b3djdFwWChq28hyX2bq8Eow9ar0.jpg", rating: 8.4)
-Movie.create(title: "The Green Mile", overview: "A supernatural tale set on death row in a Southern prison, where gentle giant John Coffey possesses the ability to heal people’s pain.", poster_url: "https://image.tmdb.org/t/p/original/gXbaqJxDoZ9A5bdhwQwkkdyS1DA.jpg", rating: 8.6)
-Movie.create(title: "The Exorcist", overview: "When a young girl is possessed by a mysterious entity, her mother seeks the help of two priests to save her daughter.", poster_url: "https://image.tmdb.org/t/p/original/fu29CclD8jXiARQES0H3NB3v1PQ.jpg", rating: 8.0)
-
-puts "Seeding done"
+url = "http://tmdb.lewagon.com/movie/top_rated"
+50.times do |i|
+  puts "Importing movies from page #{i + 1}"
+  movies = JSON.parse(URI.open("#{url}?page=#{i + 1}").read)["results"]
+  movies.each do |movie|
+    puts "Creating #{movie["title"]}"
+    base_poster_url = "https://image.tmdb.org/t/p/original"
+    Movie.create(
+      title: movie["title"],
+      overview: movie["overview"],
+      poster_url: "#{base_poster_url}#{movie["backdrop_path"]}",
+      rating: movie["vote_average"]
+    )
+  end
+end
+puts "Movies created"
