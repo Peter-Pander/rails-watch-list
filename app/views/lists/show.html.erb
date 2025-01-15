@@ -1,0 +1,23 @@
+<h1><%= @list.name %></h1>
+
+<% if @list.movies.empty? %>
+  <p>You haven't saved any movies yet!</p>
+<% else %>
+  <ul>
+    <% @list.movies.each do |movie| %>
+      <li>
+        <h3><%= movie.title %></h3>
+        <p><%= movie.overview %></p>
+        <p>Rating: <%= movie.rating %></p>
+        <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
+        <% if bookmark %>
+          <p>Comment: <%= bookmark.comment %></p>
+          <%= link_to "Delete Bookmark", bookmark_path(bookmark), method: :delete, data: { confirm: "Are you sure?" } %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= link_to "Delete this list", list_path(@list), method: :delete, data: { confirm: "Are you sure?" } %>
+<%= link_to "Back to Home", root_path %>
