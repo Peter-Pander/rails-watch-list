@@ -1,18 +1,24 @@
-<h1>Save any kind of movies</h1>
+<div class="background-container">
+  <div class="d-flex flex-column align-items-center text-white">
+    <h1>Save any kind of movies</h1>
 
-<h2>My Lists</h2>
+    <h2>My Lists</h2>
 
-<%= link_to "Create a movie list", new_list_path %>
+    <%= link_to "Create a movie list", new_list_path, class: "btn btn-light text-dark mb-3 rounded fs-5 hover-effect" %>
 
-<ul>
-  <% @lists.each do |list| %>
-    <li>
-      <%= link_to list.name, list_path(list) %>
-      <% if list.photo.attached? %> <!-- Check if a photo is attached -->
-        <div>
-          <%= cl_image_tag list.photo.key, height: 300, width: 400, crop: :fill %>
-        </div>
+    <ul class="list-unstyled">
+      <% @lists.each do |list| %>
+        <li class="my-3">
+          <% if list.photo.attached? %>
+            <div class="position-relative my-3" style="width: 400px; height: 300px;">
+              <%= cl_image_tag list.photo.key, height: 300, width: 400, crop: :fill, class: "img-fluid" %>
+              <%= link_to list.name, list_path(list), class: "btn text-white fs-5 fw-bold position-absolute top-50 start-50 translate-middle" %>
+            </div>
+          <% else %>
+            <%= link_to list.name, list_path(list), class: "btn text-white fs-5 fw-bold mb-2" %>
+          <% end %>
+        </li>
       <% end %>
-    </li>
-  <% end %>
-</ul>
+    </ul>
+  </div>
+</div>

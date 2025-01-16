@@ -1,37 +1,47 @@
+<div class="background-container">
+  <div class="d-flex flex-column align-items-center text-white">
 
-<div class= "mt-2">
-  <%= link_to "Back to Home", root_path %>
-</div>
-<h1>My <%= @list.name %> movie list</h1>
+    <div class="d-flex justify-content-center mt-2">
+      <%= link_to "Back to Home", root_path, class: "btn btn-light text-dark mb-3 rounded fs-5 hover-effect" %>
+    </div>
 
-<div>
-  <%= cl_image_tag @list.photo.key, height: 300, width: 400, crop: :fill %>
-</div>
+    <div class="text-center">
+      <h1 class="d-block">My <%= @list.name %> movie list</h1>
+    </div>
 
-<div>
-  <span><%= "You haven't saved any movies yet!" if @list.movies.empty? %></span>
+    <div class="d-flex justify-content-center">
+      <%= cl_image_tag @list.photo.key, height: 300, width: 400, crop: :fill %>
+    </div>
 
-  <div class="mt-5">
-    <% @list.movies.each do |movie| %>
-      <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
-      <div class= "my-4">
-        <%= image_tag movie.poster_url, alt: movie.title, width: 400, height: 300 %>
-        <div class="mb-4">
-          <strong><%= movie.title %></strong>
-          <p><%= movie.overview %></p>
-          <p>Comment: "<%= bookmark.comment %>"</p>
-          <%= link_to "Delete \"#{movie.title}\" from list", bookmark_path(bookmark),
-          data: { turbo_method: :delete, turbo_confirm:
-          "Are you sure you want to remove \"#{movie.title}\" from this list?" } %>
+    <div class="text-center">
+      <span class="d-block"><%= "You haven't saved any movies yet!" if @list.movies.empty? %></span>
+    </div>
+
+    <div class="mt-5">
+      <% @list.movies.each do |movie| %>
+        <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
+        <div class="my-4 text-center d-flex justify-content-center">
+          <div class="text-center" style="width: 400px;">
+            <%= image_tag movie.poster_url, alt: movie.title, width: 400, height: 300 %>
+            <div class="mb-4">
+              <strong class="d-block text-justify" style="text-align: justify;"><%= movie.title %></strong>
+              <p class="d-block text-justify" style="text-align: justify;"><%= movie.overview %></p>
+              <p class="d-block text-justify" style="text-align: justify;">Comment: "<%= bookmark.comment %>"</p>
+              <%= link_to "Delete \"#{movie.title}\" from list", bookmark_path(bookmark),
+              data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove \"#{movie.title}\" from this list?" },
+              class: "btn btn-light text-dark fs-5 mb-3 rounded hover-effect" %>
+            </div>
+          </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
+
+    <%= render "bookmarks/modal", list: @list, bookmark: @bookmark %>
+
+    <div class="d-flex justify-content-center mb-3">
+      <%= link_to "Delete this list", list_path(@list), class: "btn btn-light text-dark fs-5 rounded hover-effect me-3", data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this list?" } %>
+      <%= link_to "Back to Home", root_path, class: "btn btn-light text-dark fs-5 rounded hover-effect" %>
+    </div>
+
   </div>
 </div>
-
-<%= render "bookmarks/modal", list: @list, bookmark: @bookmark %>
-
-
-<%= link_to "Delete this list", list_path(@list), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this list?" } %>
-
-<%= link_to "Back to Home", root_path %>

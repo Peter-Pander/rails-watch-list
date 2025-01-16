@@ -1,12 +1,13 @@
 <%# views/bookmarks/_modal.html.erb %>
-
 <div id="new_movie_modal" tabindex="-1" role="dialog">
-  <h5 class="mt-3">Add a movie to your <%= list.name %> list</h5>
-
-
-  <%= simple_form_for [list, bookmark] do |f| %>
-    <%= f.association :movie, collection: Movie.all.order(:title), prompt: "Select a movie" %>
-    <%= f.input :comment, placeholder: "Enter a comment about the movie" %>
-    <%= f.submit "Add movie" %>
-  <% end %>
+  <div class="d-flex justify-content-center">
+    <div class="text-center" style="max-width: 400px; width: 100%;">
+      <h5 class="mt-3">Add a movie to your <%= list.name %> list</h5>
+      <%= simple_form_for [list, bookmark] do |f| %>
+        <%= f.association :movie, collection: Movie.all.order(:title), prompt: "Select a movie" %>
+        <%= f.input :comment, placeholder: "Enter a comment about the movie" %>
+        <%= f.submit "Add movie" %>
+      <% end %>
+    </div>
+  </div>
 </div>
