@@ -1,9 +1,12 @@
+
 <div class= "mt-2">
   <%= link_to "Back to Home", root_path %>
 </div>
-<h1><%= @list.name %></h1>
+<h1>My <%= @list.name %> movie list</h1>
 
-<%= cl_image_tag @list.photo.key, height: 300, width: 400, crop: :fill %>
+<div>
+  <%= cl_image_tag @list.photo.key, height: 300, width: 400, crop: :fill %>
+</div>
 
 <div>
   <span><%= "You haven't saved any movies yet!" if @list.movies.empty? %></span>
@@ -11,16 +14,15 @@
   <div class="mt-5">
     <% @list.movies.each do |movie| %>
       <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
-      <div class="d-flex justify-content-center align-items-center my-4">
+      <div class= "my-4">
         <%= image_tag movie.poster_url, alt: movie.title, width: 400, height: 300 %>
         <div class="mb-4">
           <strong><%= movie.title %></strong>
           <p><%= movie.overview %></p>
           <p>Comment: "<%= bookmark.comment %>"</p>
-          <%= link_to "Delete #{movie.title} from list", bookmark_path(bookmark),
+          <%= link_to "Delete \"#{movie.title}\" from list", bookmark_path(bookmark),
           data: { turbo_method: :delete, turbo_confirm:
-          "Are you sure you want to remove #{movie.title} from this list?" } %>
-
+          "Are you sure you want to remove \"#{movie.title}\" from this list?" } %>
         </div>
       </div>
     <% end %>
