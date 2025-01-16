@@ -2,6 +2,7 @@
 <%= simple_form_for @list do |f| %>
   <%= f.input :name, placeholder: 'Drama' %>
   <%= f.submit "Create List" %>
+  <%= f.input :photo, as: :file %>
 <% end %>
 
 <%= button_to "Back to Home", root_path, method: :get, class: "btn btn-outline-dark mt-3" %>
