@@ -3,6 +3,8 @@
 </div>
 <h1><%= @list.name %></h1>
 
+<%= cl_image_tag @list.photo.key, height: 300, width: 400, crop: :fill %>
+
 <div>
   <span><%= "You haven't saved any movies yet!" if @list.movies.empty? %></span>
 
