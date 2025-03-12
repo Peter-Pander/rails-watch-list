@@ -2,8 +2,12 @@
 
 This is a platform where movie lovers can create and curate themed movie lists. Whether you're into action, drama, horror, coming-of-age, fantasy, or any other genre, watch-list offers a wide selection of movies to choose from. It lets you organize your movies by theme and add a custom image to represent each list. You can also share your thoughts by adding comments to each movie in your collection.
 
+![1](https://github.com/user-attachments/assets/711d8548-bf0a-4dd4-907d-bb776c43c5bc)
+![2](https://github.com/user-attachments/assets/42bed82e-fc9c-49d4-9bd8-908106990dcf)
+
 <br>
-   
+
+
 
 ## 🚀 Getting Started
 ### 📌 Setup
